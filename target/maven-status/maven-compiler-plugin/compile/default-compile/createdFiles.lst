@@ -1,0 +1,7 @@
+com/happeo/userprovisioning/demo2api/controllers/UsersController.class
+com/happeo/userprovisioning/demo2api/controllers/TestController.class
+com/happeo/userprovisioning/demo2api/model/jwt/JwtRequest.class
+com/happeo/userprovisioning/demo2api/dao/UsersRepository.class
+com/happeo/userprovisioning/demo2api/Demo2ApiApplication.class
+com/happeo/userprovisioning/demo2api/model/users/User.class
+com/happeo/userprovisioning/demo2api/model/jwt/JwtResponse.class
