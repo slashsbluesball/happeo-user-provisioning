@@ -5,8 +5,6 @@ ARG JAVA_OPTS
 ENV JAVA_OPTS=$JAVA_OPTS
 
 COPY target/demo2-api-0.0.1-SNAPSHOT.jar demo2api.jar
-COPY application.properties application.properties
-
 
 EXPOSE 8080
 # ENTRYPOINT exec java $JAVA_OPTS -jar demo2api.jar

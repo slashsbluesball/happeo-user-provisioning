@@ -23,9 +23,8 @@ public class UsersController {
     @Autowired
     private UsersRepository repository;
 
-    @GetMapping("/{orgId}/provisioner/{provId}users")
+    @GetMapping("/{orgId}/provisioner/{provId}/users")
     public ResponseEntity<List<User>> getAll() {
-        // return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
     
