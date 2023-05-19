@@ -11,28 +11,50 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.happeo.userprovisioning.demo2api.dao.UsersRepository;
 import com.happeo.userprovisioning.demo2api.model.users.User;
+import com.happeo.userprovisioning.demo2api.model.users.UserEntity;
+import com.happeo.userprovisioning.demo2api.services.UsersService;
 
 @RestController
-@RequestMapping("api/organisation")
+@RequestMapping("/api/organisation")
 public class UsersController {
 
     @Autowired
-    private UsersRepository repository;
+    private UsersService service;
+
+    @GetMapping("/users")
+    @ResponseBody
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(service.findAllUsers());
+    }
 
     @GetMapping("/{orgId}/provisioner/{provId}/users")
-    public ResponseEntity<List<User>> getAll() {
-        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
+    @ResponseBody
+    public ResponseEntity<List<User>> getAllUsersByProvisioner(@PathVariable String orgId, @PathVariable String provId, @RequestParam(required = false) boolean active) {
+        return ResponseEntity.ok(service.findAllUsersByOrgId(orgId));
     }
-    
+
     @PostMapping(path = "/{orgId}/provisioner/{provId}/users",
         consumes = MediaType.APPLICATION_JSON_VALUE, 
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> postUser(@PathVariable("orgId") int orgId, @PathVariable("provId") int provId, @RequestBody User user) {
-        return ResponseEntity.ok(repository.save(user));
+    @ResponseBody
+    public ResponseEntity<UserEntity> addUser(@PathVariable String orgId, @PathVariable String provId, @RequestBody UserEntity userRequest) {
+        User userData = User.builder()
+            .email(userRequest.getEmail())
+            .firstName(userRequest.getName().getFirstName())
+            .lastName(userRequest.getName().getLastName())
+            .organisationId(orgId)
+            .externalId(userRequest.getId())
+            .isActive(false).build();
+
+        service.addUser(userData);
+
+        userRequest.setApplicationId(userData.getId());
+        return new ResponseEntity<UserEntity>(userRequest, HttpStatus.CREATED);
     }
 }
 
