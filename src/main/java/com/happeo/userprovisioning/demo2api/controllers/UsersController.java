@@ -19,7 +19,10 @@ import com.happeo.userprovisioning.demo2api.model.users.User;
 import com.happeo.userprovisioning.demo2api.model.users.UserEntity;
 import com.happeo.userprovisioning.demo2api.services.UsersService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "User Provisioning")
 @RequestMapping("/api/organisation/{orgId}")
 public class UsersController {
 

@@ -158,7 +158,11 @@ $
 ## REST API usage
 You can use web browser to verify the [welcome page](http://localhost:8080/api/msg/hello) is working but for other usecases Postman or curl might be more useful.
 
-You can access following endpoints
+Currently implemented endpoints you can see in built-in [swagger UI](http://localhost:8080/swagger-ui/index.html)
+- GET /api/msg/hello
+- GET /api/organisation/{orgId}/users
+- POST /api/organisation/{orgId}/provisioner/{provId}/users
+- POST /api/organisation/{orgId}/provisioner/{provId}/users
 
 
 ## TODO list
