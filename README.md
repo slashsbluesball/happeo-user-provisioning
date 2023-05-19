@@ -1,7 +1,7 @@
 # happeo-user-provisioning
 
 ## About
-This repository contains a Proof of Concept application for Happeo user provisiong feature
+This repository contains demo application for Happeo user provisiong feature
 
 When a new user is created in the external identity system, it POSTs user data into the
 users endpoint of configured targets (similar to a webhook). The external identity
@@ -9,8 +9,8 @@ system pushes users to the target system one at a time on an endpoint using a sc
 defines.
 
 ## Used technology
-Application uses Java 17 with Spring boot framework to expose the REST API.
-Mongo DB servers as a database and its build by maven. 
+Application uses Java 17 with Spring boot framework to expose the REST API and is build by maven. Mongo DB servers as a database.
+
 Application and its database is fully dockerized.
 
 ## Prerequisites
