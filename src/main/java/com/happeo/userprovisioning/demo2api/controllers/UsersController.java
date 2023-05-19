@@ -64,4 +64,3 @@ public class UsersController {
         return new ResponseEntity<UserEntity>(userRequest, HttpStatus.CREATED);
     }
 }
-
