@@ -23,20 +23,11 @@ public class User {
     private String externalId;              // ID of the user in the external system (null for internal user of Happeo)
 
     @Indexed(unique = false)
-    // @Field(name = "orgId")
     private String organisationId;          // Organisation ID of the user
-    // private String organisationId = "1";    // Organisation ID of the user
 
     private String email;
     private String firstName;
     private String lastName;
     private String password;
     private Boolean isActive;
-
-    // @Override
-    // public String toString() {
-    //   return String.format(
-    //       "User[id=%s, firstName='%s', lastName='%s', isAcive='%s']",
-    //       id, firstName, lastName, isActive);
-    // }
 }

@@ -27,6 +27,24 @@ public class UsersService {
             String.format("Cannot find any users with organization ID %s", orgId)));
     }
 
+    public List<User> findAllUsersByOrgIdActive(String orgId, Boolean active) {
+        return repository.findByOrgIdActive(orgId, active).orElseThrow(() -> new RuntimeException(
+            String.format("Cannot find any users with organization ID %s", orgId)));
+    }
+
+    public List<User> activateAllUsersByOrg(String orgId) {
+        List<User> inactiveUsers = repository.findByOrgIdActive(orgId, false).get();
+        if (inactiveUsers == null)
+            return List.of();
+        else
+            for (User u : inactiveUsers) {
+                u.setIsActive(true);
+                repository.save(u);
+            }
+
+        return inactiveUsers;
+    }
+
     public void addUser(User userData) {
         // repository.save(userData);
         repository.insert(userData);

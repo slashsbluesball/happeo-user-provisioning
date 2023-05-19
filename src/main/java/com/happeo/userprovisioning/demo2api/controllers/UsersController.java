@@ -20,7 +20,7 @@ import com.happeo.userprovisioning.demo2api.model.users.UserEntity;
 import com.happeo.userprovisioning.demo2api.services.UsersService;
 
 @RestController
-@RequestMapping("/api/organisation")
+@RequestMapping("/api/organisation/{orgId}")
 public class UsersController {
 
     @Autowired
@@ -28,17 +28,24 @@ public class UsersController {
 
     @GetMapping("/users")
     @ResponseBody
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(service.findAllUsers());
+    public ResponseEntity<List<User>> getAllUsersByOrg(@PathVariable String orgId, @RequestParam(required = false) Boolean active) {
+        if (active == null)
+            return ResponseEntity.ok(service.findAllUsersByOrgId(orgId));
+        else 
+            return ResponseEntity.ok(service.findAllUsersByOrgIdActive(orgId, active));
     }
 
-    @GetMapping("/{orgId}/provisioner/{provId}/users")
+    @PostMapping("/users/activate")
     @ResponseBody
-    public ResponseEntity<List<User>> getAllUsersByProvisioner(@PathVariable String orgId, @PathVariable String provId, @RequestParam(required = false) boolean active) {
-        return ResponseEntity.ok(service.findAllUsersByOrgId(orgId));
+    public ResponseEntity<List<User>> activateUsersByOrg(@PathVariable String orgId) {
+        List<User> resp = service.activateAllUsersByOrg(orgId);
+        if (resp.isEmpty())
+            return new ResponseEntity<List<User>>(resp, HttpStatus.NO_CONTENT);
+        else
+            return ResponseEntity.ok(resp);
     }
 
-    @PostMapping(path = "/{orgId}/provisioner/{provId}/users",
+    @PostMapping(path = "/provisioner/{provId}/users",
         consumes = MediaType.APPLICATION_JSON_VALUE, 
         produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
