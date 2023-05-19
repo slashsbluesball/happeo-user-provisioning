@@ -23,8 +23,6 @@ Application and its database is fully dockerized.
 To run or develop the application locally you need a running mongodb container. 
 Then you can build and start the application from your IDE or command line.
 
-Reach the [welcome page](http://localhost:8080/api/msg/hello) via web browser.
-
 
 ```
 $ docker run -d -p 27017:27017 --name demo2-mongodb-local mongo:latest
@@ -92,6 +90,9 @@ $
 ```
 
 This jar file will be start an application and expose on [http://localhost:8080](http://localhost:8080).
+
+Reach the [welcome page](http://localhost:8080/api/msg/hello) via web browser.
+
 ```
 $ java -jar target/demo2-api-0.0.1-SNAPSHOT.jar 
 
@@ -109,7 +110,7 @@ $ java -jar target/demo2-api-0.0.1-SNAPSHOT.jar
 
 
 ## Docker compose
-Alternativelly you can build the and spin up release version of an application using docker compose.
+Alternatively you can build the and spin up release version of an application using docker compose.
 
 You need to build a compiled jar file as described above.
 This jar file will be used to build an application docker image.
