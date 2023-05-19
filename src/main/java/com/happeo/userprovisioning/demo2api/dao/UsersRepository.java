@@ -12,4 +12,7 @@ public interface UsersRepository extends MongoRepository<User, Integer> {
     
     @Query("{'organisationId': ?0}")
     Optional<List<User>> findByOrgId(String orgId);
+
+    @Query("{'organisationId': ?0, 'isActive': ?1}")
+    Optional<List<User>> findByOrgIdActive(String orgId, Boolean active);
 }
