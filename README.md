@@ -56,7 +56,7 @@ $
 ## Build and run
 You can build compiled jar file using maven in your IDE or from command line.
 
-These commands should compile the code and generate .jar file in target directory.
+These commands will compile the code and generate .jar file in target directory.
 
 ```
 $ mvn wrapper:wrapper
@@ -91,7 +91,7 @@ target/demo2-api-0.0.1-SNAPSHOT.jar
 $
 ```
 
-This jar file will be start an application and expose on [http://localhost:800](http://localhost:8080).
+This jar file will be start an application and expose on [http://localhost:8080](http://localhost:8080).
 ```
 $ java -jar target/demo2-api-0.0.1-SNAPSHOT.jar 
 
@@ -168,4 +168,4 @@ Currently implemented endpoints you can see in built-in [swagger UI](http://loca
 ## TODO list
 Missing features are:
 - JWT Token authentication implementation
-- Connection to DB broken in docker-compose deployment
+- Connection to DB broken in docker-compose deployment (WiP: to be tested)
