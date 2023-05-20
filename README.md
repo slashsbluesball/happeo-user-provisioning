@@ -1,7 +1,7 @@
 # happeo-user-provisioning
 
 ## About
-This repository contains a Proof of Concept application for Happeo user provisiong feature
+This repository contains demo application for Happeo user provisiong feature
 
 When a new user is created in the external identity system, it POSTs user data into the
 users endpoint of configured targets (similar to a webhook). The external identity
@@ -9,8 +9,8 @@ system pushes users to the target system one at a time on an endpoint using a sc
 defines.
 
 ## Used technology
-Application uses Java 17 with Spring boot framework to expose the REST API.
-Mongo DB servers as a database and its build by maven. 
+Application uses Java 17 with Spring boot framework to expose the REST API and is build by maven. Mongo DB servers as a database.
+
 Application and its database is fully dockerized.
 
 ## Prerequisites
@@ -22,8 +22,6 @@ Application and its database is fully dockerized.
 ## Local development
 To run or develop the application locally you need a running mongodb container. 
 Then you can build and start the application from your IDE or command line.
-
-Reach the [welcome page](http://localhost:8080/api/msg/hello) via web browser.
 
 
 ```
@@ -41,6 +39,9 @@ $ docker stop demo2-mongodb-local
 demo2-mongodb-local
 $ docker start demo2-mongodb-local 
 demo2-mongodb-local
+$ docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS                                           NAMES
+dd2356cbc7fe   mongo:latest      "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes   0.0.0.0:27017->27017/tcp, :::27017->27017/tcp   demo2-mongodb-local
 $
 
 $ docker stop demo2-mongodb-local 
@@ -56,7 +57,7 @@ $
 ## Build and run
 You can build compiled jar file using maven in your IDE or from command line.
 
-These commands should compile the code and generate .jar file in target directory.
+These commands will compile the code and generate .jar file in target/ directory.
 
 ```
 $ mvn wrapper:wrapper
@@ -91,7 +92,10 @@ target/demo2-api-0.0.1-SNAPSHOT.jar
 $
 ```
 
-This jar file will be start an application and expose on [http://localhost:800](http://localhost:8080).
+This jar file will start an application and expose on [http://localhost:8080](http://localhost:8080).
+
+Reach the [welcome page](http://localhost:8080/api/msg/hello) via web browser.
+
 ```
 $ java -jar target/demo2-api-0.0.1-SNAPSHOT.jar 
 
@@ -109,7 +113,7 @@ $ java -jar target/demo2-api-0.0.1-SNAPSHOT.jar
 
 
 ## Docker compose
-Alternativelly you can build the and spin up release version of an application using docker compose.
+Alternatively you can build the and spin up release version of an application using docker compose.
 
 You need to build a compiled jar file as described above.
 This jar file will be used to build an application docker image.
@@ -156,16 +160,24 @@ $
 ```
 
 ## REST API usage
-You can use web browser to verify the [welcome page](http://localhost:8080/api/msg/hello) is working but for other usecases Postman or curl might be more useful.
+You can use web browser to verify the [welcome page](http://localhost:8080/api/msg/hello) is working but for other use-cases Postman or curl might be more useful.
 
 Currently implemented endpoints you can see in built-in [swagger UI](http://localhost:8080/swagger-ui/index.html)
+
+Welcome page:
 - GET /api/msg/hello
+
+To list users for organisation {orgId}:
 - GET /api/organisation/{orgId}/users
+- GET /api/organisation/{orgId}/users?active=true
+- GET /api/organisation/{orgId}/users?active=false
+
+To add new users and activate inactive users for organisation {orgId}
 - POST /api/organisation/{orgId}/provisioner/{provId}/users
-- POST /api/organisation/{orgId}/provisioner/{provId}/users
+- POST /api/organisation/{orgId}/users/activate
 
 
 ## TODO list
 Missing features are:
+- Creating provisioner for external organization
 - JWT Token authentication implementation
-- Connection to DB broken in docker-compose deployment
