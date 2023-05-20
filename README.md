@@ -39,6 +39,9 @@ $ docker stop demo2-mongodb-local
 demo2-mongodb-local
 $ docker start demo2-mongodb-local 
 demo2-mongodb-local
+$ docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS                                           NAMES
+dd2356cbc7fe   mongo:latest      "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes   0.0.0.0:27017->27017/tcp, :::27017->27017/tcp   demo2-mongodb-local
 $
 
 $ docker stop demo2-mongodb-local 
@@ -54,7 +57,7 @@ $
 ## Build and run
 You can build compiled jar file using maven in your IDE or from command line.
 
-These commands will compile the code and generate .jar file in target directory.
+These commands will compile the code and generate .jar file in target/ directory.
 
 ```
 $ mvn wrapper:wrapper
@@ -89,7 +92,7 @@ target/demo2-api-0.0.1-SNAPSHOT.jar
 $
 ```
 
-This jar file will be start an application and expose on [http://localhost:8080](http://localhost:8080).
+This jar file will start an application and expose on [http://localhost:8080](http://localhost:8080).
 
 Reach the [welcome page](http://localhost:8080/api/msg/hello) via web browser.
 
@@ -157,7 +160,7 @@ $
 ```
 
 ## REST API usage
-You can use web browser to verify the [welcome page](http://localhost:8080/api/msg/hello) is working but for other usecases Postman or curl might be more useful.
+You can use web browser to verify the [welcome page](http://localhost:8080/api/msg/hello) is working but for other use-cases Postman or curl might be more useful.
 
 Currently implemented endpoints you can see in built-in [swagger UI](http://localhost:8080/swagger-ui/index.html)
 - GET /api/msg/hello
