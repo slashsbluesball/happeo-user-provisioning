@@ -2,11 +2,6 @@ package com.happeo.userprovisioning.demo2api.security;
 
 import java.io.IOException;
 
-// import javax.servlet.FilterChain;
-// import javax.servlet.ServletException;
-// import javax.servlet.http.HttpServletRequest;
-// import javax.servlet.http.HttpServletResponse;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +18,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.happeo.userprovisioning.demo2api.services.UserDetailsServiceImpl;
-// import com.bezkoder.spring.jwt.mongodb.security.services.UserDetailsServiceImpl;
+
 
 public class AuthTokenFilter extends OncePerRequestFilter {
   @Autowired
