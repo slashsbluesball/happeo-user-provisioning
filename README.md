@@ -163,13 +163,21 @@ $
 You can use web browser to verify the [welcome page](http://localhost:8080/api/msg/hello) is working but for other use-cases Postman or curl might be more useful.
 
 Currently implemented endpoints you can see in built-in [swagger UI](http://localhost:8080/swagger-ui/index.html)
+
+Welcome page:
 - GET /api/msg/hello
+
+To list users for organisation {orgId}:
 - GET /api/organisation/{orgId}/users
+- GET /api/organisation/{orgId}/users?active=true
+- GET /api/organisation/{orgId}/users?active=false
+
+To add new users and activate inactive users for organisation {orgId}
 - POST /api/organisation/{orgId}/provisioner/{provId}/users
-- POST /api/organisation/{orgId}/provisioner/{provId}/users
+- POST /api/organisation/{orgId}/users/activate
 
 
 ## TODO list
 Missing features are:
+- Creating provisioner for external organization
 - JWT Token authentication implementation
-- Connection to DB broken in docker-compose deployment (WiP: to be tested)
