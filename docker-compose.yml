@@ -4,8 +4,8 @@ services:
   demo2-mongodb:
     image: mongo:latest
     container_name: demo2-mongodb
-    ports:
-      - 27017:27017
+    # ports:
+    #   - 27017:27017
   demo2-api:
     image: demo2api:latest
     container_name: demo2-api
