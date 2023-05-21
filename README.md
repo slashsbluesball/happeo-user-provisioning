@@ -8,13 +8,14 @@ users endpoint of configured targets (similar to a webhook). The external identi
 system pushes users to the target system one at a time on an endpoint using a schema it
 defines.
 
-## Used technology
-Application uses Java 17 with Spring boot framework to expose the REST API and is build by maven. Mongo DB servers as a database.
+Application is written in Java 17 with Spring Boot framework to expose the REST API and is build by maven. Mongo DB servers as a database. Application and its database is fully dockerized.
 
-Application and its database is fully dockerized.
-
-## Prerequisites
+### Technology choices
 - Java 17
+- Spring Boot framework
+  - Spring MVC (REST API)
+  - Spring Data MongoDB
+- Mongo DB
 - maven
 - docker + docker-compose
 
@@ -169,15 +170,28 @@ Welcome page:
 
 To list users for organisation {orgId}:
 - GET /api/organisation/{orgId}/users
-- GET /api/organisation/{orgId}/users?active=true
 - GET /api/organisation/{orgId}/users?active=false
+- GET /api/organisation/{orgId}/users?active=true
 
 To add new users and activate inactive users for organisation {orgId}
 - POST /api/organisation/{orgId}/provisioner/{provId}/users
 - POST /api/organisation/{orgId}/users/activate
 
+To generate JWT token
+- POST /api/auth
+
+
 
 ## TODO list
 Missing features are:
 - Creating provisioner for external organization
-- JWT Token authentication implementation
+- JWT Token generating implementation (WiP)
+  - the /api/auth accepts json in format but generating JWT token ends up with an error:
+  > Failed to complete request: jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoClassDefFoundError: javax/xml/bind/DatatypeConverter
+  ```json
+  {
+    "username": "admin",
+    "password": "happeo"
+  }
+  ```
+- Web authentication with JWT
